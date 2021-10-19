@@ -10,4 +10,8 @@ jobs:
     steps:
       - name: Run container
         run: |
-          docker run --rm -e DD_API_KEY='api_key_test' datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win datadogagent version
+          docker pull datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win
+          $job = Start-Job -ScriptBlock {
+            docker run --rm -e DD_API_KEY='api_key_test' datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win
+          }
+          $job | Wait-Job -Timeout 30
