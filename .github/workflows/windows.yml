@@ -20,3 +20,4 @@ jobs:
             docker run --rm -e DD_API_KEY='api_key_test' ${{ matrix.image }}
           }
           $job | Wait-Job -Timeout 30
+          $job | Receive-Job
