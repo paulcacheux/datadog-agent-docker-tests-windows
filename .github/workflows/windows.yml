@@ -6,12 +6,17 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    stategy:
+      matrix:
+        image: ["datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win"]
 
     steps:
+      - name: Pull image
+        run: |
+          docker pull ${{ matrix.image }}
       - name: Run container
         run: |
-          docker pull datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win
           $job = Start-Job -ScriptBlock {
-            docker run --rm -e DD_API_KEY='api_key_test' datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win
+            docker run --rm -e DD_API_KEY='api_key_test' ${{ matrix.image }}
           }
           $job | Wait-Job -Timeout 30
