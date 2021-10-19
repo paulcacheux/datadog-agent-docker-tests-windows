@@ -9,4 +9,4 @@ jobs:
 
     steps:
       - name: Run container
-        run: docker run datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win
+        run: docker run datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win -e DD_API_KEY=api_key_test
