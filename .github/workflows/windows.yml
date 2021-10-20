@@ -8,7 +8,11 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        image: ["datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win"]
+        image: [
+          "datadog/agent-dev:vboulineau-fix-windows-py3-jmx-win",
+          "datadog/agent-dev:paulcacheux-upgrade-opa-rego-py3-jmx-win",
+          "datadog/agent-dev:paulcacheux-upgrade-opa-rego-py3-jmx-win"
+        ]
 
     steps:
       - name: Pull image
